@@ -36,8 +36,15 @@ grid_size = 25
 grid = [[0 for i in range(grid_size)] for j in range(grid_size)]
 
 
+def row_count_blocks(row):
+    grouped_row = [(k, sum(1 for i in g)) for k, g in itertools.groupby(row)]
+    result = sum([1 for s in grouped_row  if s[0] == 2])
+    return result
+
 def generate_row(grid_ref, blacks_total, blocks_total):
-    pass
+    grid_ref_blacks = grid_ref.count(2)
+    blacks to place = blacks_total - grid_ref_blacks
+    return
 
 
 def check_col(col):
@@ -47,7 +54,7 @@ def check_col(col):
 while True:
     for row_num in range(grid_size):
         # Does not iterate through all combinations yet
-        grid[row_num] = generate_row(grid_static, rule_hor_black[row_num], rule_hor_blocks[row_num])
+        grid[row_num] = generate_row(grid_static, row_num, rule_hor_black[row_num], rule_hor_blocks[row_num])
 
     if all(check_col(col_num) for col_num in range(grid_size)):
         print('Found')
